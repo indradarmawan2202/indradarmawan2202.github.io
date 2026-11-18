@@ -217,7 +217,7 @@ h2.big em{font-style:normal;color:var(--red)}
 .stk{display:flex;align-items:center;gap:12px;padding:0 26px;white-space:nowrap;font-family:var(--serif);font-size:24px;text-transform:uppercase}
 .stk i{width:30px;height:30px;flex:none;background:#120a08;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
 .stk b{font-weight:400;color:#f1ede4;font-size:.75em;margin-left:14px}
-@media (max-width:900px){.credits{grid-template-columns:1fr 1fr}.mk{height:64px}.mk .wm{font-size:21px}.stk{font-size:19px}.stk i{width:24px;height:24px}}
+@media (max-width:900px){.credits{grid-template-columns:1fr 1fr}.mk{height:64px}.mk .wm{font-size:clamp(15px,4.6vw,21px);overflow-wrap:normal;white-space:nowrap}.stk{font-size:19px}.stk i{width:24px;height:24px}}
 
 /* contact */
 .contact{padding:150px var(--pad) 50px;position:relative;overflow:hidden}
