@@ -104,6 +104,22 @@ h2.big em{font-style:normal;color:var(--red)}
 .rv{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
 
+/* why signal/noise */
+.dict{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(20px,4vw,56px);align-items:start}
+.word{font-family:var(--serif);font-weight:400;font-size:clamp(56px,8vw,128px);line-height:.85;margin:0;text-transform:uppercase}
+.entry:last-child .word{color:var(--red)}
+.pron{font-family:var(--mono);font-size:13px;color:var(--muted);margin:14px 0 18px}
+.pron i{color:var(--ink);font-style:italic}
+.entry ol{margin:0;padding:0;list-style:none;counter-reset:d}
+.entry li{counter-increment:d;position:relative;padding:12px 0 12px 34px;border-top:1px solid var(--line);font-size:16px;line-height:1.5;color:#d6d1c7}
+.entry li::before{content:counter(d);position:absolute;left:0;top:12px;font-family:var(--serif);font-size:22px;line-height:1.1;color:var(--red)}
+.dict-star{width:clamp(50px,6vw,90px);padding-top:clamp(10px,2vw,30px)}
+.dict-star svg{width:100%;animation:spin 18s linear infinite}
+.dict-star path{fill:var(--red)}
+.dict-foot{margin:46px 0 0;font-family:var(--serif);font-size:clamp(24px,3vw,42px);line-height:1.15}
+.dict-foot em{font-style:normal;color:var(--muted)}
+@media (max-width:900px){.dict{grid-template-columns:1fr}.dict-star{width:56px;padding:0}}
+
 /* about */
 .about{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(30px,6vw,90px);align-items:start}
 .statement{font-family:var(--serif);font-size:clamp(28px,3.6vw,52px);line-height:1.08;margin:0}
@@ -329,6 +345,31 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
 </section>
 
 <div class="marquee" aria-hidden="true"><div class="track-m" id="mq"></div></div>
+
+<!-- ============ WHY SIGNAL / NOISE ============ -->
+<section class="blk" id="why">
+  <div class="lab rv"><span><b>( 00 )</b> &nbsp;Title track</span><span>Why signal / noise?</span></div>
+  <div class="dict">
+    <div class="entry rv">
+      <h3 class="word">Signal</h3>
+      <div class="pron">/ˈsɪɡ.nəl/ &nbsp;<i>noun</i></div>
+      <ol>
+        <li>The pattern worth keeping: the relevant passage in a retrieval pipeline, the true label hiding under noisy annotations, the metric that actually moved.</li>
+        <li>What I try to ship: features you can measure.</li>
+      </ol>
+    </div>
+    <div class="dict-star rv" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M50 0 C52.5 34 58 45 100 50 C58 55 52.5 66 50 100 C47.5 66 42 55 0 50 C42 45 47.5 34 50 0Z"/></svg></div>
+    <div class="entry rv">
+      <h3 class="word">Noise</h3>
+      <div class="pron">/nɔɪz/ &nbsp;<i>noun</i></div>
+      <ol>
+        <li>Everything that looks like signal but isn't: label noise, hallucinated answers, vanity metrics.</li>
+        <li>Also: Deftones at full volume while the model trains.</li>
+      </ol>
+    </div>
+  </div>
+  <p class="dict-foot rv">My job is separating the two. <em>My playlist is mostly the second one.</em></p>
+</section>
 
 <!-- ============ ABOUT ============ -->
 <section class="blk" id="about">
