@@ -179,23 +179,19 @@ h2.big em{font-style:normal;color:var(--red)}
 .artists a::before{content:counter(a,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--muted)}
 .artists .cv{position:relative;width:52px;height:52px;overflow:hidden;background:#222;transform:rotate(-3deg);transition:transform .35s cubic-bezier(.3,1.5,.4,1)}
 .artists li:nth-child(even) .cv{transform:rotate(3deg)}
-.artists .cv img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.25) brightness(.95);transition:filter .35s}
-.artists .cv i{position:absolute;inset:0;background:var(--red);mix-blend-mode:color;opacity:.6;transition:opacity .35s}
+.artists .cv img{width:100%;height:100%;object-fit:cover;display:block}
 .artists .an{font-family:var(--serif);font-size:clamp(22px,2.4vw,34px);line-height:1.1;text-transform:uppercase;transition:color .2s}
 .artists .al{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;max-width:170px}
 .artists a:hover{padding-left:10px}
 .artists a:hover .an{color:var(--red)}
 .artists a:hover .cv{transform:rotate(0) scale(1.12)}
-.artists a:hover .cv img{filter:none}
-.artists a:hover .cv i{opacity:0}
 @media (max-width:900px){.artists a{grid-template-columns:20px 44px 1fr;gap:12px}.artists .cv{width:44px;height:44px}.artists .al{display:none}}
 .sp-frame{position:relative;padding:14px;background:var(--red);margin-bottom:34px;transform:rotate(-1.2deg)}
 .sp-frame iframe{display:block;width:100%;height:380px;border:0;border-radius:12px;background:#111}
 .np{display:flex;gap:16px;align-items:center;border:1px solid var(--line);padding:14px;max-width:440px;border-radius:4px}
 .np[hidden]{display:none}
 .np-cover{position:relative;width:76px;height:76px;flex:none;overflow:hidden;background:#222}
-.np-cover img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25) brightness(.95)}
-.np-cover i{position:absolute;inset:0;background:var(--red);mix-blend-mode:color;opacity:.6}
+.np-cover img{width:100%;height:100%;object-fit:cover}
 .np-meta{min-width:0;display:flex;flex-direction:column;gap:3px}
 .np-k{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
 .np-t{font-family:var(--serif);font-size:22px;line-height:1.1;text-transform:uppercase;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -432,7 +428,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
       <p class="mus-p rv">What's in my headphones while the model trains: emo, post-hardcore, alt rock and bedroom pop, curated out of a ~1,200-track library.</p>
       <!-- live now-playing card (needs SPOTIFY.nowPlayingUrl, see README) -->
       <div class="np" id="np" hidden>
-        <div class="np-cover"><img id="npImg" alt=""><i></i></div>
+        <div class="np-cover"><img id="npImg" alt=""></div>
         <div class="np-meta">
           <span class="np-k" id="npK"><b class="eqb"><i></i><i></i><i></i></b>Now playing</span>
           <a class="np-t" id="npT" target="_blank" rel="noopener"></a>
@@ -445,17 +441,17 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
       <div class="sp-frame" id="spFrame" hidden></div>
       <!-- cover album: ganti album ID & hash gambar dari Spotify kalau mau album lain -->
       <ol class="artists" id="artists">
-        <li><a href="https://open.spotify.com/album/78bpIziExqiI9qztvNFlQu" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e024ae1c4c5c45aabe565499163" alt="" loading="lazy"><i></i></span><span class="an">Arctic Monkeys</span><span class="al">AM</span></a></li>
-        <li><a href="https://open.spotify.com/album/5j53HGspZrUT5nXmVAUAsN" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e023566e4014e1398e7b279d772" alt="" loading="lazy"><i></i></span><span class="an">Pierce The Veil</span><span class="al">Selfish Machines</span></a></li>
-        <li><a href="https://open.spotify.com/album/0FZK97MXMm5mUQ8mtudjuK" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02663b6ce496144fa5c3670ac0" alt="" loading="lazy"><i></i></span><span class="an">My Chemical Romance</span><span class="al">The Black Parade</span></a></li>
-        <li><a href="https://open.spotify.com/album/3UoOO8m0oxxvUHXUKf3qcZ" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e0269966efa45b125ed6711b43c" alt="" loading="lazy"><i></i></span><span class="an">Paramore</span><span class="al">Riot!</span></a></li>
-        <li><a href="https://open.spotify.com/album/3umOBqXWR9VnJTQoe9Qkkj" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02858e191c07bf2ab4b9992dd7" alt="" loading="lazy"><i></i></span><span class="an">Neck Deep</span><span class="al">Life&#x27;s Not Out To Get You</span></a></li>
-        <li><a href="https://open.spotify.com/album/7C8uqokvE67UOlu1TiEYMd" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e025a0c2870f4f309e382d1fad6" alt="" loading="lazy"><i></i></span><span class="an">Chase Atlantic</span><span class="al">Chase Atlantic</span></a></li>
-        <li><a href="https://open.spotify.com/album/4xkM0BwLM9H2IUcbYzpcBI" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e028265a736a1eb838ad5a0b921" alt="" loading="lazy"><i></i></span><span class="an">The Neighbourhood</span><span class="al">I Love You.</span></a></li>
-        <li><a href="https://open.spotify.com/album/5LEXck3kfixFaA3CqVE7bC" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e025c53799f473fa3e1a48c00ed" alt="" loading="lazy"><i></i></span><span class="an">Deftones</span><span class="al">White Pony</span></a></li>
-        <li><a href="https://open.spotify.com/album/5T0Gt5JYXh6gEttuB8ujML" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e0224f8c3ad20b7c6cfecb5832e" alt="" loading="lazy"><i></i></span><span class="an">wave to earth</span><span class="al">0.1 flaws and all.</span></a></li>
-        <li><a href="https://open.spotify.com/album/0GJmg6PCM2HKNv8CfdkNgX" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02247b7dc433934fa1d577c71c" alt="" loading="lazy"><i></i></span><span class="an">keshi</span><span class="al">onoffonoff</span></a></li>
-        <li><a href="https://open.spotify.com/album/6gJ8VKn5PAFcCIVaf3B2uE" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02f733e50079838090eebc3fe4" alt="" loading="lazy"><i></i></span><span class="an">Joji</span><span class="al">Nectar</span></a></li>
+        <li><a href="https://open.spotify.com/album/78bpIziExqiI9qztvNFlQu" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e024ae1c4c5c45aabe565499163" alt="" loading="lazy"></span><span class="an">Arctic Monkeys</span><span class="al">AM</span></a></li>
+        <li><a href="https://open.spotify.com/album/5j53HGspZrUT5nXmVAUAsN" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e023566e4014e1398e7b279d772" alt="" loading="lazy"></span><span class="an">Pierce The Veil</span><span class="al">Selfish Machines</span></a></li>
+        <li><a href="https://open.spotify.com/album/0FZK97MXMm5mUQ8mtudjuK" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02663b6ce496144fa5c3670ac0" alt="" loading="lazy"></span><span class="an">My Chemical Romance</span><span class="al">The Black Parade</span></a></li>
+        <li><a href="https://open.spotify.com/album/3UoOO8m0oxxvUHXUKf3qcZ" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e0269966efa45b125ed6711b43c" alt="" loading="lazy"></span><span class="an">Paramore</span><span class="al">Riot!</span></a></li>
+        <li><a href="https://open.spotify.com/album/3umOBqXWR9VnJTQoe9Qkkj" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02858e191c07bf2ab4b9992dd7" alt="" loading="lazy"></span><span class="an">Neck Deep</span><span class="al">Life&#x27;s Not Out To Get You</span></a></li>
+        <li><a href="https://open.spotify.com/album/7C8uqokvE67UOlu1TiEYMd" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e025a0c2870f4f309e382d1fad6" alt="" loading="lazy"></span><span class="an">Chase Atlantic</span><span class="al">Chase Atlantic</span></a></li>
+        <li><a href="https://open.spotify.com/album/4xkM0BwLM9H2IUcbYzpcBI" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e028265a736a1eb838ad5a0b921" alt="" loading="lazy"></span><span class="an">The Neighbourhood</span><span class="al">I Love You.</span></a></li>
+        <li><a href="https://open.spotify.com/album/5LEXck3kfixFaA3CqVE7bC" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e025c53799f473fa3e1a48c00ed" alt="" loading="lazy"></span><span class="an">Deftones</span><span class="al">White Pony</span></a></li>
+        <li><a href="https://open.spotify.com/album/5T0Gt5JYXh6gEttuB8ujML" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e0224f8c3ad20b7c6cfecb5832e" alt="" loading="lazy"></span><span class="an">wave to earth</span><span class="al">0.1 flaws and all.</span></a></li>
+        <li><a href="https://open.spotify.com/album/0GJmg6PCM2HKNv8CfdkNgX" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02247b7dc433934fa1d577c71c" alt="" loading="lazy"></span><span class="an">keshi</span><span class="al">onoffonoff</span></a></li>
+        <li><a href="https://open.spotify.com/album/6gJ8VKn5PAFcCIVaf3B2uE" target="_blank" rel="noopener"><span class="cv"><img src="https://i.scdn.co/image/ab67616d00001e02f733e50079838090eebc3fe4" alt="" loading="lazy"></span><span class="an">Joji</span><span class="al">Nectar</span></a></li>
       </ol>
     </div>
   </div>
