@@ -179,8 +179,8 @@ h2.big em{font-style:normal;color:var(--red)}
 .artists a::before{content:counter(a,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--muted)}
 .artists .cv{position:relative;width:52px;height:52px;overflow:hidden;background:#222;transform:rotate(-3deg);transition:transform .35s cubic-bezier(.3,1.5,.4,1)}
 .artists li:nth-child(even) .cv{transform:rotate(3deg)}
-.artists .cv img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.3);transition:filter .35s}
-.artists .cv i{position:absolute;inset:0;background:var(--red);mix-blend-mode:multiply;opacity:.8;transition:opacity .35s}
+.artists .cv img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.25) brightness(.95);transition:filter .35s}
+.artists .cv i{position:absolute;inset:0;background:var(--red);mix-blend-mode:color;opacity:.6;transition:opacity .35s}
 .artists .an{font-family:var(--serif);font-size:clamp(22px,2.4vw,34px);line-height:1.1;text-transform:uppercase;transition:color .2s}
 .artists .al{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:right;max-width:170px}
 .artists a:hover{padding-left:10px}
@@ -194,8 +194,8 @@ h2.big em{font-style:normal;color:var(--red)}
 .np{display:flex;gap:16px;align-items:center;border:1px solid var(--line);padding:14px;max-width:440px;border-radius:4px}
 .np[hidden]{display:none}
 .np-cover{position:relative;width:76px;height:76px;flex:none;overflow:hidden;background:#222}
-.np-cover img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.35)}
-.np-cover i{position:absolute;inset:0;background:var(--red);mix-blend-mode:multiply;opacity:.85}
+.np-cover img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.25) brightness(.95)}
+.np-cover i{position:absolute;inset:0;background:var(--red);mix-blend-mode:color;opacity:.6}
 .np-meta{min-width:0;display:flex;flex-direction:column;gap:3px}
 .np-k{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
 .np-t{font-family:var(--serif);font-size:22px;line-height:1.1;text-transform:uppercase;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
