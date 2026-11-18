@@ -1162,7 +1162,7 @@ function renderDisco() { $$('#dgrid canvas').forEach(cv => halftone(cv, cv.datas
 /* ---------- boot ---------- */
 function layout() { fit(); tearAll(); renderShots(); renderDisco(); Lab.update(); }
 let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 150); });
-fit(); tearAll();
+fit(); tearAll(); layout(); // draw right away, redraw once fonts are in
 (document.fonts ? Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2500))]) : Promise.resolve()).then(() => {
   Promise.allSettled([document.fonts?.load('700 40px "JetBrains Mono"'), document.fonts?.load('40px "Gloock"')]).then(layout);
 });
