@@ -32,7 +32,7 @@ GitHub Pages itu statis, jadi client secret tidak boleh ditaruh di sini. Worker 
    python spotify-worker/get_refresh_token.py <CLIENT_ID> <CLIENT_SECRET>
    ```
 3. **Deploy worker:** buka https://dash.cloudflare.com → Workers & Pages → Create → Worker. Tempel isi `spotify-worker/worker.js` → Deploy.
-4. **Isi secrets** di Settings → Variables and Secrets: `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN`, dan `ALLOW_ORIGIN` = `https://indradarmawan2202.github.io`.
+4. **Isi secrets** di Settings → Variables and Secrets: `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN`, dan `ALLOW_ORIGIN` = `https://indradarmawan2202.github.io,https://darmawan.is-a.dev` (bisa lebih dari satu domain, dipisah koma).
 5. **Sambungkan ke website:** isi `nowPlayingUrl` dengan URL worker (`https://<nama>.<akun>.workers.dev`), lalu push.
 
 Kalau tidak ada lagu yang sedang diputar, widget-nya menampilkan "Last played".

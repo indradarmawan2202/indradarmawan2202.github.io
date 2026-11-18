@@ -5,7 +5,8 @@
  *   SPOTIFY_CLIENT_ID      — dari Spotify Developer Dashboard
  *   SPOTIFY_CLIENT_SECRET  — dari Spotify Developer Dashboard (JANGAN taruh di repo)
  *   SPOTIFY_REFRESH_TOKEN  — hasil get_refresh_token.py
- *   ALLOW_ORIGIN           — https://indradarmawan2202.github.io
+ *   ALLOW_ORIGIN           — satu atau beberapa domain, pisahkan dengan koma, misal:
+ *                            https://indradarmawan2202.github.io,https://darmawan.is-a.dev
  *
  * Response JSON: { playing, title, artist, album, cover, url }
  */
@@ -13,8 +14,11 @@ let cached = { token: null, exp: 0 };
 
 export default {
   async fetch(req, env) {
+    const allowed = (env.ALLOW_ORIGIN || '*').split(',').map(s => s.trim().replace(/\/$/, ''));
+    const origin = req.headers.get('Origin') || '';
     const headers = {
-      'Access-Control-Allow-Origin': env.ALLOW_ORIGIN || '*',
+      'Access-Control-Allow-Origin': allowed.includes('*') ? '*' : (allowed.includes(origin) ? origin : allowed[0]),
+      'Vary': 'Origin',
       'Content-Type': 'application/json',
       'Cache-Control': 'public, max-age=20',
     };
