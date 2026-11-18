@@ -303,7 +303,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
 .pm-x{position:absolute;right:12px;top:10px;z-index:2;border:0;background:var(--bg);color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:16px;cursor:pointer}
 .pm-x:hover{background:var(--red);color:#120a08}
 /* backstage passes (certificates) */
-.passes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:34px 26px;padding-top:30px}
+.passes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:34px 26px;padding-top:30px;align-items:start}
 .pass{position:relative;display:block;text-decoration:none;color:#141414;background:#f1eee6;border-radius:12px;padding:52px 18px 18px;transform-origin:50% -26px;
   transform:rotate(var(--sw,0deg));transition:transform .5s cubic-bezier(.3,1.6,.4,1);box-shadow:0 14px 30px rgba(0,0,0,.45)}
 .pass:hover{transform:rotate(calc(var(--sw,0deg) * -1.6))}
@@ -712,6 +712,8 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
    ===================================================================== */
 const CERTS = [
 ];
+// sertifikat yang kamu tambahkan lewat /admin/ diambil dari worker ini
+const CERTS_API = 'https://portfolio-admin.indra220205.workers.dev';
 
 const SPOTIFY = {
   playlistId: '',
@@ -1146,16 +1148,18 @@ const escH = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;'
   const close = () => { pm.classList.remove('on'); pm.setAttribute('aria-hidden', 'true'); last && last.focus && last.focus(); };
   $('#pmX').onclick = close; pm.addEventListener('click', e => { if (e.target === pm) close(); });
   addEventListener('keydown', e => { if (e.key === 'Escape' && pm.classList.contains('on')) close(); });
-  // certificates
-  if (CERTS.length) {
-    $('#passes').hidden = false;
-    $('#passGrid').innerHTML = CERTS.map((c, i) => { const tag = c.url ? 'a' : 'div';
-      return `<${tag} class="pass rv" ${c.url ? `href="${c.url}" target="_blank" rel="noopener"` : ''} style="--sw:${[-3, 2.5, -1.5, 3][i % 4]}deg">
-        <div class="hd">${escH(c.kind || 'All access')}</div>${c.img ? `<img src="${c.img}" alt="" loading="lazy">` : ''}
+  // certificates: static CERTS + whatever was added through /admin/
+  function renderPasses(list) {
+    $('#passes').hidden = !list.length; if (!list.length) return;
+    $('#passGrid').innerHTML = list.map((c, i) => { const safeUrl = /^https?:\/\//i.test(c.url || '') ? c.url : ''; const tag = safeUrl ? 'a' : 'div';
+      return `<${tag} class="pass rv" ${safeUrl ? `href="${escH(safeUrl)}" target="_blank" rel="noopener"` : ''} style="--sw:${[-3, 2.5, -1.5, 3][i % 4]}deg">
+        <div class="hd">${escH(c.kind || 'All access')}</div>${c.img ? `<img src="${escH(c.img)}" alt="" loading="lazy">` : ''}
         <b>${escH(c.title)}</b><span class="is">${escH(c.issuer || '')}</span>
-        <span class="dt"><span>${escH(c.date || '')}</span>${c.url ? '<em>verify ↗</em>' : ''}</span></${tag}>`; }).join('');
+        <span class="dt"><span>${escH(c.date || '')}</span>${safeUrl ? '<em>verify ↗</em>' : ''}</span></${tag}>`; }).join('');
     $$('.pass').forEach(x => io.observe(x));
   }
+  renderPasses(CERTS);
+  if (CERTS_API) fetch(CERTS_API + '/certs').then(r => r.ok ? r.json() : []).then(remote => { if (Array.isArray(remote) && remote.length) renderPasses([...remote, ...CERTS]); }).catch(() => {});
 })();
 function renderDisco() { $$('#dgrid canvas').forEach(cv => halftone(cv, cv.dataset.scene, null, 60)); }
 

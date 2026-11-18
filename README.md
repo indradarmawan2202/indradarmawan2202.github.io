@@ -36,3 +36,10 @@ GitHub Pages itu statis, jadi client secret tidak boleh ditaruh di sini. Worker 
 5. **Sambungkan ke website:** isi `nowPlayingUrl` dengan URL worker (`https://<nama>.<akun>.workers.dev`), lalu push.
 
 Kalau tidak ada lagu yang sedang diputar, widget-nya menampilkan "Last played".
+
+## Admin sertifikat (`/admin/`)
+Halaman login khusus untuk menambah, mengedit, mengurutkan, dan menghapus sertifikat, plus upload gambar. Hasilnya langsung tampil di section *Backstage passes*.
+
+- **Backend:** Cloudflare Worker `admin-worker/worker.js` + Cloudflare KV.
+- **Login:** email + password (disimpan sebagai *secret* di Cloudflare, bukan di repo). Token login HMAC berlaku 12 jam. Salah 5x = dikunci 15 menit per IP.
+- **Setup:** lihat komentar di bagian atas `admin-worker/worker.js` (binding KV `CERTS_KV`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `TOKEN_SECRET`, `ALLOW_ORIGIN`). Alamat worker diatur di `PROD_API` (admin/index.html) dan `CERTS_API` (index.html).
