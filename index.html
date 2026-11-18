@@ -197,6 +197,28 @@ h2.big em{font-style:normal;color:var(--red)}
 @keyframes eqb{0%,100%{height:3px}50%{height:11px}}
 @media (max-width:900px){.music{grid-template-columns:1fr}.sp-frame iframe{height:352px}}
 
+/* credits / logos */
+.credits{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.cr{position:relative;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 20px 22px;display:flex;flex-direction:column;gap:6px;
+  overflow:hidden;isolation:isolate;transition:color .3s}
+.cr::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--red);clip-path:polygon(0 100%,100% 100%,100% 100%,0 100%);transition:clip-path .45s cubic-bezier(.2,.8,.2,1)}
+.cr:hover::before{clip-path:polygon(0 8%,18% 0,46% 6%,72% 0,100% 7%,100% 100%,0 100%)}
+.cr:hover{color:#120a08}
+.mk{height:86px;display:flex;align-items:center;margin-bottom:14px}
+.mk .wm{font-family:var(--serif);font-size:clamp(22px,2.1vw,32px);overflow-wrap:anywhere;line-height:1;text-transform:uppercase;letter-spacing:.01em}
+.mk.has-logo .wm{display:none}
+.mk i{display:block;width:100%;height:100%;background:var(--ink);-webkit-mask:var(--m) left center/contain no-repeat;mask:var(--m) left center/contain no-repeat;transition:background .3s}
+.cr:hover .mk i{background:#120a08}
+.cr-n{font-weight:700;font-size:14.5px;line-height:1.3}
+.cr-r{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);transition:color .3s}
+.cr:hover .cr-r{color:#120a08}
+.stackband{margin-top:70px;background:var(--red);color:#120a08;overflow:hidden;transform:rotate(1.2deg);border-top:2px solid var(--bg);border-bottom:2px solid var(--bg)}
+.stack-m{display:flex;width:max-content;animation:mq 34s linear infinite reverse;padding:16px 0}
+.stk{display:flex;align-items:center;gap:12px;padding:0 26px;white-space:nowrap;font-family:var(--serif);font-size:24px;text-transform:uppercase}
+.stk i{width:30px;height:30px;flex:none;background:#120a08;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.stk b{font-weight:400;color:#f1ede4;font-size:.75em;margin-left:14px}
+@media (max-width:900px){.credits{grid-template-columns:1fr 1fr}.mk{height:64px}.mk .wm{font-size:21px}.stk{font-size:19px}.stk i{width:24px;height:24px}}
+
 /* contact */
 .contact{padding:150px var(--pad) 50px;position:relative;overflow:hidden}
 .contact .huge{font-family:var(--serif);font-weight:400;font-size:clamp(70px,17vw,280px);line-height:.82;margin:0;text-transform:uppercase;display:flex;align-items:center;gap:.08em;flex-wrap:wrap}
@@ -365,9 +387,24 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
   </div>
 </section>
 
+<!-- ============ CREDITS / LOGOS ============ -->
+<!-- Logo resmi: taruh file di img/logos/ (lihat img/logos/README.md). Kalau belum ada, tampil wordmark. -->
+<section class="blk" id="credits">
+  <div class="lab rv"><span><b>( 05 )</b> &nbsp;Liner credits</span><span>Played at</span></div>
+  <div class="credits rv">
+    <div class="cr"><div class="mk" data-logo="img/logos/unesa.png"><span class="wm">UNESA</span></div><div class="cr-n">Universitas Negeri Surabaya</div><div class="cr-r">S1 Sistem Informasi · 2023 — now</div></div>
+    <div class="cr"><div class="mk" data-logo="img/logos/ascendemy.png"><span class="wm">Ascendemy</span></div><div class="cr-n">Ascendemy</div><div class="cr-r">AI features lead</div></div>
+    <div class="cr"><div class="mk" data-logo="img/logos/datanusa.png"><span class="wm">Datanusa</span></div><div class="cr-n">CV Inovasi Datanusa</div><div class="cr-r">Fullstack Developer</div></div>
+    <div class="cr"><div class="mk" data-logo="img/logos/kdd.png"><span class="wm">KDD</span></div><div class="cr-n">KDD Research Group</div><div class="cr-r">Research member</div></div>
+    <div class="cr"><div class="mk" data-logo="img/logos/mbkm.png"><span class="wm">MBKM</span></div><div class="cr-n">Kampus Merdeka</div><div class="cr-r">Internship · 2026</div></div>
+  </div>
+</section>
+
+<div class="stackband" aria-label="Tech stack"><div class="stack-m" id="stackM"></div></div>
+
 <!-- ============ GEAR ============ -->
 <section class="blk" id="gear">
-  <div class="lab rv"><span><b>( 05 )</b> &nbsp;Gear list</span><span>Skills</span></div>
+  <div class="lab rv"><span><b>( 06 )</b> &nbsp;Gear list</span><span>Skills</span></div>
   <div class="gear rv">
     <div><h4>AI / Data</h4><ul><li>Python</li><li>PyTorch</li><li>scikit-learn</li><li>HF Transformers</li><li>IndoBERT</li><li>RAG</li><li>Gemini / Groq API</li></ul></div>
     <div><h4>Web / Backend</h4><ul><li>Laravel 11</li><li>Livewire</li><li>Filament</li><li>React</li><li>TypeScript</li><li>Express</li><li>PostgreSQL</li></ul></div>
@@ -377,7 +414,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
 
 <!-- ============ MUSIC ============ -->
 <section class="blk" id="music">
-  <div class="lab rv"><span><b>( 06 )</b> &nbsp;Heavy rotation</span><span>What I code to</span></div>
+  <div class="lab rv"><span><b>( 07 )</b> &nbsp;Heavy rotation</span><span>What I code to</span></div>
   <div class="music">
     <div>
       <h2 class="big rv" style="margin-bottom:26px">On<br><em>rotation</em></h2>
@@ -405,7 +442,7 @@ footer a{text-decoration:none} footer a:hover{color:var(--red)}
 
 <!-- ============ CONTACT ============ -->
 <section class="contact" id="contact">
-  <div class="lab rv"><span><b>( 07 )</b> &nbsp;Encore</span><span>Contact</span></div>
+  <div class="lab rv"><span><b>( 08 )</b> &nbsp;Encore</span><span>Contact</span></div>
   <h2 class="huge rv">Say <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 0 C52.5 34 58 45 100 50 C58 55 52.5 66 50 100 C47.5 66 42 55 0 50 C42 45 47.5 34 50 0Z"/></svg> hi</h2>
   <!-- TODO: replace with your real email / LinkedIn / Upwork -->
   <a class="mail rv" href="mailto:you@example.com">you@example.com</a>
@@ -580,6 +617,17 @@ async function halftone(cv, scene, src, cellDiv = 82) {
   c.fill();
 }
 function renderShots() { $$('.shot canvas').forEach(cv => halftone(cv, cv.dataset.scene, cv.dataset.src)); }
+
+/* ---------- logos (mask = siluet, warna ikut tema) ---------- */
+$$('.mk[data-logo]').forEach(mk => {
+  const src = mk.dataset.logo, im = new Image();
+  im.onload = () => { const i = document.createElement('i'); i.style.setProperty('--m', `url("${src}")`); mk.appendChild(i); mk.classList.add('has-logo'); };
+  im.src = src;
+});
+const STACK = [['python','Python'],['pytorch','PyTorch'],['scikitlearn','scikit-learn'],['pandas','Pandas'],['huggingface','Hugging Face'],['googlegemini','Gemini'],
+  ['laravel','Laravel'],['livewire','Livewire'],['react','React'],['typescript','TypeScript'],['express','Express'],['tailwindcss','Tailwind'],['postgresql','PostgreSQL']];
+const stk = STACK.map(([f, n]) => `<span class="stk"><i style="--m:url('img/stack/${f}.svg')"></i>${n}<b>✦</b></span>`).join('');
+$('#stackM').innerHTML = stk + stk;
 
 /* ---------- marquee ---------- */
 const words = ['RAG', 'Laravel', 'PyTorch', 'Structured LLM output', 'React', 'Evaluation first', 'Knowledge graphs', 'Surabaya'];
