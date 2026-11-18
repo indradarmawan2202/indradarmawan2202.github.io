@@ -1,19 +1,38 @@
 # indradarmawan2202.github.io
 
-Portofolio pribadi **Muhammad Indra Darmawan**, Fullstack Developer & AI Engineer (Surabaya).
+Portofolio **Muhammad Indra Darmawan**, Fullstack Developer & AI Engineer (Surabaya).
 
 🔗 **Live:** https://indradarmawan2202.github.io
 
-Konsepnya meja kerja: ada buku catatan 3D yang bisa dibuka per halaman, plus barang-barang di meja yang bisa diklik (lampu untuk mode malam, walkman lo-fi, tablet training run, stiker yang bisa digeser).
+Gaya visualnya *Signal / Noise*: estetika zine punk dengan latar hitam ber-grain, judul serif besar, dan aksen merah. Gambar-gambarnya halftone yang dibuat di canvas dan ditempel di atas sobekan kertas merah. Section-nya dibuat seperti album: Tracklist (proyek), Side B (riset), Tour dates (pengalaman), Gear list (skill), Heavy rotation (musik).
 
-## Stack
-HTML, CSS, dan JavaScript murni, tanpa framework dan tanpa build step. Semua ada di satu file `index.html`, dan musiknya disintesis dengan Web Audio API.
+Semua ada di satu `index.html`: HTML, CSS, dan JS murni, tanpa build step.
 
-## Jalankan lokal
-Cukup buka `index.html` di browser, atau:
-```bash
-python -m http.server 8000
+## Edit cepat
+- **Kontak:** cari `TODO` di `index.html` (email, LinkedIn, Upwork).
+- **Foto sendiri di collage:** taruh foto di folder `img/`, lalu tambahkan `data-src="img/foto.jpg"` di `<canvas>` milik `.shot`. Foto otomatis diubah jadi halftone.
+
+## Spotify
+Ada dua opsi, dan keduanya bisa dipakai bersamaan. Atur di objek `SPOTIFY` di bagian atas `<script>` dalam `index.html`.
+
+### 1. Embed playlist (gampang, tanpa API key)
+Ambil ID dari link playlist publik `https://open.spotify.com/playlist/<ID>?si=...`, lalu isi:
+```js
+const SPOTIFY = { playlistId: '<ID>', nowPlayingUrl: '' };
 ```
 
-## Edit konten
-Semua teks ada di `index.html`. Bagian yang masih placeholder ditandai `TODO` (LinkedIn, email, Upwork).
+### 2. "Now playing" live (Spotify Web API + Cloudflare Worker)
+GitHub Pages itu statis, jadi client secret tidak boleh ditaruh di sini. Worker gratis di Cloudflare yang menyimpan secret-nya lalu meneruskan datanya.
+
+> Syarat Spotify sejak Feb 2026: app dalam *Development Mode* hanya jalan kalau pemilik app punya **Spotify Premium** aktif.
+
+1. **Buat app:** buka https://developer.spotify.com/dashboard → Create app. Pilih API: Web API. Redirect URI: `http://127.0.0.1:8888/callback` (pakai `127.0.0.1`, `localhost` sudah ditolak Spotify).
+2. **Ambil refresh token** (sekali saja, di laptop):
+   ```bash
+   python spotify-worker/get_refresh_token.py <CLIENT_ID> <CLIENT_SECRET>
+   ```
+3. **Deploy worker:** buka https://dash.cloudflare.com → Workers & Pages → Create → Worker. Tempel isi `spotify-worker/worker.js` → Deploy.
+4. **Isi secrets** di Settings → Variables and Secrets: `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, `SPOTIFY_REFRESH_TOKEN`, dan `ALLOW_ORIGIN` = `https://indradarmawan2202.github.io`.
+5. **Sambungkan ke website:** isi `nowPlayingUrl` dengan URL worker (`https://<nama>.<akun>.workers.dev`), lalu push.
+
+Kalau tidak ada lagu yang sedang diputar, widget-nya menampilkan "Last played".
