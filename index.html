@@ -861,6 +861,16 @@ const SCENES = {
     vs.forEach((v, i) => { const x = w * (.08 + i * .125), bh = h * v * .72; const g = c.createLinearGradient(0, h - bh, 0, h); g.addColorStop(0, '#fff'); g.addColorStop(1, '#666'); c.fillStyle = g; c.fillRect(x, h * .88 - bh, w * .085, bh); });
     c.strokeStyle = '#fff'; c.lineWidth = h * .015; c.beginPath(); c.moveTo(w * .05, h * .88); c.lineTo(w * .95, h * .88); c.stroke();
   },
+  brand(c, w, h) {
+    const g = c.createLinearGradient(0, 0, w, h); g.addColorStop(0, '#2a2a2a'); g.addColorStop(1, '#0d0d0d'); c.fillStyle = g; c.fillRect(0, 0, w, h);
+    const ax = w * .1, aw = Math.min(w * .42, h * .62), ab = h * .9, at = h * .12, r = aw / 2;
+    const ag = c.createLinearGradient(ax, at, ax + aw, ab); ag.addColorStop(0, '#ffffff'); ag.addColorStop(1, '#9c9c9c'); c.fillStyle = ag;
+    c.beginPath(); c.moveTo(ax, ab); c.lineTo(ax, at + r); c.arc(ax + r, at + r, r, Math.PI, 0); c.lineTo(ax + aw, ab); c.closePath(); c.fill();
+    c.fillStyle = '#111'; c.font = `700 ${aw * .62}px "Gloock", Georgia, serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText('M', ax + r, at + r + aw * .32);
+    const st = (cx, cy, R) => { c.beginPath(); for (let i = 0; i < 16; i++) { const a = Math.PI / 8 * i - Math.PI / 2, rr = i % 2 ? R * .72 : R; c.lineTo(cx + rr * Math.cos(a), cy + rr * Math.sin(a)); } c.closePath(); c.fill(); };
+    c.fillStyle = '#ededed'; st(w * .74, h * .26, h * .13);
+    ['#f4f4f4', '#bdbdbd', '#8a8a8a', '#565656', '#ffffff'].forEach((col, i) => { c.fillStyle = col; c.fillRect(w * (.6 + i * .072), h * .58, w * .06, h * .26); });
+  },
   links(c, w, h) {
     c.fillStyle = '#101010'; c.fillRect(0, 0, w, h);
     for (let i = 6; i > 0; i--) { c.fillStyle = i % 2 ? '#e8e8e8' : '#222'; c.beginPath(); c.arc(w * .5, h * .5, h * .08 * i, 0, 7); c.fill(); }
@@ -1098,6 +1108,11 @@ const PROJECTS = [
     desc: 'An end-to-end analytics workflow following CRISP-DM: cleaning, exploratory analysis, an interactive Looker Studio dashboard and retention recommendations.',
     bullets: ['Telco Customer Churn dataset (Kaggle): 7,043 rows, 21 features', 'month-to-month contracts identified as the biggest churn driver', 'high churn in the first 12 months points to onboarding issues', 'electronic check flagged as a high-friction payment method'],
     stack: ['CRISP-DM', 'EDA', 'Looker Studio'], links: [['GitHub ↗', 'https://github.com/indradarmawan2202/Telco-Customer-Churn-Dashboard']] },
+  { title: 'Maknai', cats: ['web', 'creative'], year: '2026', role: 'Web prototype · NBPC 2026', scene: 'brand',
+    short: 'Interactive prototype for an AI branding studio serving pesantren and halal MSMEs.',
+    desc: 'A prototype website for Maknai, a business plan by Tim INVICTA (UIN Malang) for the National Business Plan Competition 2026: AI-assisted branding with a sharia-compliance review. Visitors can generate a brand kit, run the 8-point Syariah Check on a sample label, and walk through ordering all the way to hand-over.',
+    bullets: ['procedural brand-kit generator: 4 logo concepts, palette, type pairing, brand story, packaging mock-up and social templates, all drawn in SVG', 'interactive 8-point Syariah Check demo with fixable findings', 'order flow with an ijarah contract, 50/50 payment and a client portal tracking 7 production steps', 'team dashboard that reproduces the plan\'s P&L, break-even and −30% / +20% scenarios'],
+    stack: ['HTML', 'CSS', 'JavaScript (ES modules)', 'SVG'], links: [['Visit the site ↗', 'https://indradarmawan2202.github.io/maknai/'], ['GitHub ↗', 'https://github.com/indradarmawan2202/maknai']] },
   { title: 'Indra\'s Room', cats: ['creative', 'web'], year: '2026', role: 'Side project', scene: 'room',
     short: 'An interactive 2000s teen-bedroom portfolio where every object is clickable.',
     desc: 'A hand-drawn SVG bedroom: posters are projects, the bookshelf is my skills, the 8-bit console is my experience, and visitors pick records for a CSS-3D turntable that plays through Spotify embeds.',
